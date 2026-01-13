@@ -8,8 +8,8 @@ Laravelで作成したお問合せフォームアプリです。
 
 ### 1. リポジトリをクローン
 ```bash
-git clone https://github.com/nae6/laravel-todo-app.git
-cd laravel-todo-app
+git clone https://github.com/nae6/laravel-contact-form.git
+cd laravel-contact-form
 ```
 
 ### 2. Dockerビルド
