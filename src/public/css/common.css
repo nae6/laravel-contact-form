@@ -1,0 +1,21 @@
+.header {
+    background: #fff;
+    margin: 0;
+    width: 100%;
+}
+
+.header__inner {
+    padding: 10px 15px;
+    text-align: center;
+    width: 100%;
+}
+
+.header__title {
+    margin: 0;
+    color: #887a6b;
+    font-weight: bold;
+    font-family: "faustina", sans-serif;
+    font-size: 32px;
+    border-bottom: 1px solid #edeceb;
+    box-sizing: border-box;
+}
