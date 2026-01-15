@@ -30,4 +30,26 @@ class Contact extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function fullName()
+    {
+        return $this->last_name.' '.$this->first_name;
+    }
+
+    public function fullTell()
+    {
+        return $this->tel1.$this->tel2.$this->tel3;
+    }
+
+    // アクセサ
+    public function getFullNameAttribute(): string
+    {
+        return $this->last_name.' '.$this->first_name;
+    }
+
+    public function getFullTellAttribute(): string
+    {
+        return $this->tel1.$this->tel2.$this->tel3;
+    }
+
 }
