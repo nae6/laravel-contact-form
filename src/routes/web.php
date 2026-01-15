@@ -17,9 +17,10 @@ Route::post('/thanks', [ContactController::class, 'store'])
 Route::get('/register', [AuthController::class, 'index']);
 
 // Administrator
-Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index'])
+    ->name('admin');
 
 Route::get('/todos/search', [TodoController::class, 'search'])
-        ->name('todos.search');
+    ->name('todos.search');
 Route::delete('/todos/{todo}', [CompleteController::class, 'destroy'])
-        ->name('todos.delete');
+    ->name('todos.delete');
