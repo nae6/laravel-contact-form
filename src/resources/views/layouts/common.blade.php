@@ -14,7 +14,14 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <p class="header__title">Fashionably Late</p>
+            <div class="header__logo">
+                <a href="/" class="header__logo-link">FashionablyLate</a>
+            </div>
+            @hasSection('header-right')
+            <div class="header__right">
+                @yield('header-right')
+            </div>
+            @endif
         </div>
     </header>
     <main>

@@ -9,7 +9,7 @@
     <div class="form__heading">
         <h2>Contact</h2>
     </div>
-    <form class="form" action="/contacts/confirm" method="post">
+    <form class="form" action="{{ route('confirm') }}" method="post">
         @csrf
         <div class="form__row">
             <div class="form__title">
@@ -18,7 +18,7 @@
                 </label>
             </div>
             <div class="form__content">
-                <div class="form__input--short">
+                <div class="form__input-name">
                     <input type="text" name="last-name" id="last_name" required placeholder="例: 山田" value="{{ old('last-name') }}">
                     <input type="text" name="first-name" id="first_name" required placeholder="例: 太郎" value="{{ old('first-name') }}">
                 </div>
@@ -69,25 +69,23 @@
             </div>
         </div>
         <div class="form__row">
-            <fieldset class="form__fieldset">
                 <div class="form__title">
                     <legend class="form__label">
                         電話番号 <span class="form__required">※</span>
                     </legend>
                 </div>
                 <div class="form__content">
-                    <div class="form__input--short">
-                        <input name="tel1" type="text" inputmode="numeric" autocomplete="tel-national" maxlength="4" value="{{ old('tel1') }}" required>
-                        <span class="sep" aria-hidden="true">-</span>
-                        <input name="tel2" type="text" inputmode="numeric" maxlength="4" value="{{ old('tel2') }}">
-                        <span class="sep" aria-hidden="true">-</span>
-                        <input name="tel3" type="text" inputmode="numeric" maxlength="4" value="{{ old('tel3') }}">
+                    <div class="form__input-tel">
+                        <input name="tel1" type="text" inputmode="numeric" autocomplete="tel-national" maxlength="4" value="{{ old('tel1') }}" required placeholder="080">
+                        <span>-</span>
+                        <input name="tel2" type="text" inputmode="numeric" maxlength="4" value="{{ old('tel2') }}" placeholder="1234">
+                        <span>-</span>
+                        <input name="tel3" type="text" inputmode="numeric" maxlength="4" value="{{ old('tel3') }}" placeholder="5678">
                     </div>
                     <div class="form__error">
                         エラー
                     </div>
                 </div>
-            </fieldset>
         </div>
         <div class="form__row">
             <div class="form__title">
@@ -123,10 +121,12 @@
                 </label>
             </div>
             <div class="form__content">
-                <div class="form__select">
-                    <select name="category" class="form__select-category">
+                <div class="form__input">
+                    <select name="category" class="form__select">
                         <option value="" selected disabled>選択してください</option>
-                        他の選択肢
+                        @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->content }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form__error">
