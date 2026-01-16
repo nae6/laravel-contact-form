@@ -126,18 +126,31 @@
 }
 
 .table__text {
-    padding: 15px;
+    padding: 15px 30px;
     border: 1px solid #ddd;
 }
 
 .table__text input {
-    width: 100%;
     outline: none;
     border: none;
 }
 
-.form__btn-submit {
-    margin-right: 8%;
+.form__btn--flex {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.form__back-btn {
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.form__back-btn button {
+    border: none;
+    text-decoration: underline;
+    background: none;
+    cursor: pointer;
 }
 
 /* thanks 専用 */

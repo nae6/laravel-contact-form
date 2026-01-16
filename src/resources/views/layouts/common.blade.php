@@ -15,7 +15,7 @@
     <header class="header">
         <div class="header__inner">
             <div class="header__logo">
-                <a href="/" class="header__logo-link">FashionablyLate</a>
+                <a href="{{ route('index') }}" class="header__logo-link">FashionablyLate</a>
             </div>
             @hasSection('header-right')
             <div class="header__right">

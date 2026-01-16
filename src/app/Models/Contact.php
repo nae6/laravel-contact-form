@@ -10,10 +10,6 @@ class Contact extends Model
 {
     use HasFactory;
 
-    const GENDER_MALE   = 1;
-    const GENDER_FEMALE = 2;
-    const GENDER_OTHER  = 3;
-
     protected $fillable = [
         'category_id',
         'first_name',
@@ -31,25 +27,22 @@ class Contact extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function fullName()
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 2;
+    const GENDER_OTHER = 3;
+
+    public static function genderLabels()
     {
-        return $this->last_name.' '.$this->first_name;
+        return [
+            self::GENDER_MALE => '男性',
+            self::GENDER_FEMALE => '女性',
+            self::GENDER_OTHER => 'その他',
+        ];
     }
 
-    public function fullTell()
+    public function getGenderTextAttribute()
     {
-        return $this->tel1.$this->tel2.$this->tel3;
-    }
-
-    // アクセサ
-    public function getFullNameAttribute(): string
-    {
-        return $this->last_name.' '.$this->first_name;
-    }
-
-    public function getFullTellAttribute(): string
-    {
-        return $this->tel1.$this->tel2.$this->tel3;
+        return self::genderLabels()[$this->gender] ?? '';
     }
 
 }
