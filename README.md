@@ -72,3 +72,8 @@ php artisan db:seed
 - categories (1) ─── (N) contacts
 
 < - - - ER図を挿入する - - - >
+
+## 工夫した点
+
+### confirm画面の修正ボタン
+aタグを使用すると入力内容が保持されないため、btnタグを使用
