@@ -11,7 +11,7 @@
 @section('page_title', 'Register')
 
 @section('content')
-<form class="form" action="/register" method="post">
+<form class="form" action="/register" method="post" novalidate>
     @csrf
     <div class="form__group">
         <label class="form__group-title">お名前</label>

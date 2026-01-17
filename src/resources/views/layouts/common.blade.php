@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="https://use.typekit.net/zjr2bsf.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Gorditas:wght@400;700&family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
     @yield('css')
 </head>
 
@@ -27,7 +30,7 @@
     <main>
         <div class="form__content">
             <div class="form__heading">
-                <h2>@yield('page_title')</h2>
+                <h1 class="form__title">@yield('page_title')</h1>
             </div>
             @yield('content')
         </div>

@@ -1,9 +1,3 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 .form__content {
     background-color: #f6f4f4;
     height: 100%;

@@ -11,7 +11,7 @@
 @section('page_title', 'Login')
 
 @section('content')
-<form class="form" action="/login" method="post">
+<form class="form" action="/login" method="post" novalidate>
     @csrf
     <div class="form__group">
         <label class="form__group-title">
