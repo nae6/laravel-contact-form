@@ -1,9 +1,3 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 html, body {
     width: 100%;
     height: 100%;
@@ -58,13 +52,17 @@ html, body {
 /* main共通 */
 .form__content {
     margin: 0 auto;
+    width: 100%;
 }
 
 .form__heading {
     text-align: center;
+    margin: 40px auto;
 }
 
-.form__title {
+.form__header {
     font-size: 26px;
     font-weight: 400;
+    width: 100%;
+    margin: 0 auto;
 }

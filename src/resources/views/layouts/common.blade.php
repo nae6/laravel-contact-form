@@ -30,7 +30,7 @@
     <main>
         <div class="form__content">
             <div class="form__heading">
-                <h1 class="form__title">@yield('page_title')</h1>
+                <h1 class="form__header">@yield('page_title')</h1>
             </div>
             @yield('content')
         </div>

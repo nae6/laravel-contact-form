@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 /* logout button */
 .header__link--btn {
     padding: 4px 20px;
@@ -100,6 +106,10 @@
     margin: 20px auto;
     display: flex;
     justify-content: space-between;
+}
+
+.export {
+    line-height: middle;
 }
 
 .export-btn {
