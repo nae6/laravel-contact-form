@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
-use App\Http\Requests\LoginRequest;
 use App\Http\Responses\LoginResponse as CustomLoginResponse;
 use App\Http\Responses\LogoutResponse as CustomLogoutResponse;
+use App\Http\Requests\LoginFormRequest;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -48,8 +48,13 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::authenticateUsing(function (Request $request)
         {
-            $form = app(LoginRequest::class);
-            Validator::make($request->all(), $form->rules(), $form->messages())->validate();
+            $form = new LoginFormRequest();
+
+            Validator::make(
+                $request->only(['email', 'password']),
+                $form->rules(),
+                $form->messages()
+            )->validate();
 
             // ここから認証
             $user = User::where('email', $request->email)->first();

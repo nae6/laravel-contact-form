@@ -6,8 +6,8 @@
 }
 
 .form {
-    margin: 20px auto;
-    width: 70%;
+    margin: 0 auto 40px;
+    width: 90%;
 }
 
 .form__btn {
@@ -44,7 +44,7 @@
 }
 
 .form__content {
-    width: 60%;
+    width: 70%;
 }
 
 .form__input-name, .form__input-tel {
