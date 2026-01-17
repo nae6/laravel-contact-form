@@ -17,4 +17,8 @@ Route::post('/contacts/back', [ContactController::class, 'back'])
 
 // Administrator
 Route::get('/admin', [AdminController::class, 'index'])
-    ->name('admin');
+    ->name('admin.index');
+Route::get('/admin/search', [AdminController::class, 'search'])
+    ->name('admin.search');
+Route::delete('/admin/{contact}', [AdminController::class, 'destroy'])
+    ->name('admin.destroy');

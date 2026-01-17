@@ -13,7 +13,8 @@
 .search__form {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 8px;
+    align-items: center;
 }
 
 .search__input,
@@ -21,27 +22,33 @@
 .search__date {
     height: 40px;
     padding: 0 10px;
-    border: 1px solid #e6dfd9;
+    border: 1px solid #ccc;
+    border-radius: 2px;
     background: #fff;
     font-size: 14px;
 }
 
+.search__input {
+    width: 30%;
+}
+
 .search__btn {
     height: 40px;
-    padding: 0 16px;
     border: none;
     cursor: pointer;
     font-size: 14px;
 }
 
 .search__btn-search {
+    padding: 0 16px;
     background: #7a6a5e;
     color: #fff;
 }
 
 .search__btn-reset {
-    background: #e6dfd9;
-    color: #7a6a5e;
+    padding: 0 10px;
+    background: #dcccbf;
+    color: #fff;
 }
 
 /* functions */
