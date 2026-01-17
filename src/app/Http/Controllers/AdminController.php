@@ -19,31 +19,27 @@ class AdminController extends Controller
         return view('admin.index', compact('contacts', 'categories'));
     }
 
-    // 検索
     public function search(Request $request)
     {
-        $this->authorize('viewAny', Todo::class);
+        $categories = Category::select('id', 'content')->get();
 
-        $todos = Todo::with('category:id, name')
-            ->forUser(Auth::id())
-            ->CategorySearch($request->category_id)
-            ->KeywordSearch($request->keyword)
-            ->Incomplete()
+        $contacts = Contact::with('category')
+            ->keywordSearch($request->keyword)
+            ->genderSearch($request->gender)
+            ->categorySearch($request->category)
+            ->dateSearch($request->created_at)
             ->latest()
-            ->get();
+            ->paginate(7)
+            ->appends($request->query());
 
-        $categories = Category::select('id', 'name')->get();
-
-        return view('index', compact('todos', 'categories'));
+        return view('admin.index', compact('contacts', 'categories'));
     }
 
     // 削除する
-    public function destroy(Todo $todo)
+    public function destroy(Contact $contact)
     {
-        $this->authorize('delete', $todo);
+        $contact->delete();
 
-        $todo->delete();
-
-        return redirect()->route('todos.completed')->with('success', 'Todoを削除しました');
+        return redirect()->route('admin.index');
     }
 }

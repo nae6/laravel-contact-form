@@ -15,29 +15,34 @@
     </div>
     <!-- search -->
     <div class="contact__search">
-        <form action="" method="get" class="search__form">
-            @csrf
-            <input type="text" name="keyword" value="" class="search__input" placeholder="名前やメールアドレスを入力してください">
+        <form action="{{ route('admin.search') }}" method="get" class="search__form">
+            <input type="text" name="keyword" value="{{ request('keyword') }}" class="search__input" placeholder="名前やメールアドレスを入力してください">
             <select name="gender" class="search__select">
-                <option value="" selected disabled>性別</option>
-                <option value="1">男性</option>
-                <option value="2">女性</option>
-                <option value="3">その他</option>
+                <option value="" disabled {{ request('gender') === null ? 'selected' : '' }}>性別</option>
+                <option value="all" {{ request('gender') === 'all' ? 'selected' : '' }}>全て</option>
+                <option value="1" {{ request('gender') == '1' ? 'selected' : '' }}>男性</option>
+                <option value="2" {{ request('gender') == '2' ? 'selected' : '' }}>女性</option>
+                <option value="3" {{ request('gender') == '3' ? 'selected' : '' }}>その他</option>
             </select>
             <select name="category" class="search__select">
-                <option value="" selected disabled>お問い合わせの種類</option>
+                <option value="" disabled {{ request('category') === null ? 'selected' : '' }}>お問い合わせの種類</option>
+                <option value="all" {{ request('category') === 'all' ? 'selected' : '' }}>全て</option>
                 @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->content }}</option>
+                <option
+                    value="{{ $category->id }}"
+                    {{ (string)request('category') === (string)$category->id ? 'selected' : '' }}>
+                    {{ $category->content }}
+                </option>
                 @endforeach
             </select>
-            <input type="date" name="created_at" value="" class="search__date">
+            <input type="date" name="created_at" value="{{ request('created_at') }}" class="search__date">
             <button type="submit" class="search__btn search__btn-search">検索</button>
-            <button type="submit" class="search__btn search__btn-reset">リセット</button>
+            <a href="{{ route('admin.index') }}" class="search__btn search__btn-reset">リセット</a>
         </form>
     </div>
-    <!-- functions -->
+    <!-- other functions -->
     <div class="functions">
-        <form action="" methot="" class="export">
+        <form action="" method="" class="export">
             <button type="submit" class="export__btn">エクスポート</button>
         </form>
         <div class="paginate">
@@ -57,10 +62,10 @@
             @foreach ($contacts as $contact)
             <tr class="table__row">
                 <td class="table__items">
-                    <p>{{ $contact->full_name }}</p>
+                    <p>{{ $contact->last_name }}　{{ $contact->first_name }}</p>
                 </td>
                 <td class="table__items">
-                    <p>{{ $contact->gender}}</p>
+                    <p>{{ $contact->gender_text}}</p>
                 </td>
                 <td class="table__items">
                     <p>{{ $contact->email}}</p>
@@ -69,63 +74,69 @@
                     <p>{{ $contact->category?->content }}</p>
                 </td>
                 <td class="table__items">
-                    <a href="#modal" class="modal-open-btn">詳細</a>
+                    <a href="#modal-{{ $contact->id }}" class="modal-open-btn">詳細</a>
                 </td>
             </tr>
             @endforeach
         </table>
     </div>
-</div>
-@endsection
+    <!-- modal -->
+    @foreach ($contacts as $contact)
+    <div class="modal" id="modal-{{ $contact->id }}">
+        <div class="modal-wrapper">
+            <a href="#" class="close">x</a>
 
-<!-- モーダル -->
-<div class="modal" id="modal">
-    <div class="modal-wrapper">
-        <a href="#" class="close">x
-            <!-- <img src="{{ asset('images/close.svg') }}" alt="閉じる"> -->
-        </a>
-        <div class="modal-content">
-            <dl class="modal-items">
-                <dt class="item-title">お名前</dt>
-                <dd class="item__text">
-                    {{ $contact->full_name }}
-                </dd>
-            </dl>
-            <dl class="modal-items">
-                <dt class="item-title">性別</dt>
-                <dd class="item__text">{{ $contact->gender }}</dd>
-            </dl>
-            <dl class="modal-items">
-                <dt class="item-title">メールアドレス</dt>
-                <dd class="item__text">{{ $contact->email }}</dd>
-            </dl>
-            <dl class="modal-items">
-                <dt class="item-title">電話番号</dt>
-                <dd class="item__text">{{ $contact->tel }}</dd>
-            </dl>
-            <dl class="modal-items">
-                <dt class="item-title">住所</dt>
-                <dd class="item__text">{{ $contact->address }}</dd>
-            </dl>
-            <dl class="modal-items">
-                <dt class="item-title">建物</dt>
-                <dd class="item__text">{{ $contact->building }}</dd>
-            </dl>
-            <dl class="modal-items">
-                <dt class="item-title">お問い合わせの種類</dt>
-                <dd class="item__text">{{ $contact->category?->content }}</dd>
-            </dl>
-            <dl class="modal-items">
-                <dt class="item-title">お問い合わせ内容</dt>
-                <dd class="item__text">{{ $contact->detail }}</dd>
-            </dl>
-        </div>
-        <div class="modal-btn">
-            <form method="POST" action="" class="delete-btn">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="delete-btn__submit">削除</button>
-            </form>
+            <div class="modal-content">
+                <dl class="modal-items">
+                    <dt class="item-title">お名前</dt>
+                    <dd class="item__text">{{ $contact->last_name }}　{{ $contact->first_name }}</dd>
+                </dl>
+
+                <dl class="modal-items">
+                    <dt class="item-title">性別</dt>
+                    <dd class="item__text">{{ $contact->gender_text }}</dd>
+                </dl>
+
+                <dl class="modal-items">
+                    <dt class="item-title">メールアドレス</dt>
+                    <dd class="item__text">{{ $contact->email }}</dd>
+                </dl>
+
+                <dl class="modal-items">
+                    <dt class="item-title">電話番号</dt>
+                    <dd class="item__text">{{ $contact->tel }}</dd>
+                </dl>
+
+                <dl class="modal-items">
+                    <dt class="item-title">住所</dt>
+                    <dd class="item__text">{{ $contact->address }}</dd>
+                </dl>
+
+                <dl class="modal-items">
+                    <dt class="item-title">建物</dt>
+                    <dd class="item__text">{{ $contact->building }}</dd>
+                </dl>
+
+                <dl class="modal-items">
+                    <dt class="item-title">お問い合わせの種類</dt>
+                    <dd class="item__text">{{ $contact->category?->content }}</dd>
+                </dl>
+
+                <dl class="modal-items">
+                    <dt class="item-title">お問い合わせ内容</dt>
+                    <dd class="item__text">{{ $contact->detail }}</dd>
+                </dl>
+            </div>
+
+            <div class="modal-btn">
+                <form method="POST" action="{{ route('admin.destroy', $contact->id) }}" class="delete-btn">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="delete-btn__submit">削除</button>
+                </form>
+            </div>
         </div>
     </div>
+    @endforeach
 </div>
+@endsection
