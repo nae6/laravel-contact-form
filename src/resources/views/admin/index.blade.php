@@ -5,7 +5,10 @@
 @endsection
 
 @section('header-right')
-<a href="/register" class="header__link">logout</a>
+<form class="form" action="/logout" method="post">
+    @csrf
+    <button class="header__link--btn">logout</button>
+</form>
 @endsection
 
 @section('content')

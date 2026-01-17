@@ -25,7 +25,12 @@
         </div>
     </header>
     <main>
-        @yield('content')
+        <div class="form__content">
+            <div class="form__heading">
+                <h2>@yield('page_title')</h2>
+            </div>
+            @yield('content')
+        </div>
     </main>
 </body>
 
