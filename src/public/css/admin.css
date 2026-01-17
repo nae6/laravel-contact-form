@@ -49,6 +49,7 @@
     padding: 0 10px;
     background: #dcccbf;
     color: #fff;
+    text-decoration: none;
 }
 
 /* functions */
@@ -59,13 +60,13 @@
     justify-content: space-between;
 }
 
-.export {
-    margin-bottom: 0;
-}
-
-.export__btn {
-    border: none;
-    padding: 5px 15px;
+.export-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #4CAF50;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
 }
 
 .pagination {

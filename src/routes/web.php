@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function ()
         ->name('admin.index');
     Route::get('/admin/search', [AdminController::class, 'search'])
         ->name('admin.search');
+    Route::get('/admin/export', [AdminController::class, 'export'])
+        ->name('admin.export');
     Route::delete('/admin/{contact}', [AdminController::class, 'destroy'])
         ->name('admin.destroy');
 });

@@ -45,9 +45,9 @@
     </div>
     <!-- other functions -->
     <div class="functions">
-        <form action="" method="" class="export">
-            <button type="submit" class="export__btn">エクスポート</button>
-        </form>
+        <div>
+            <a href="{{ route('admin.export', request()->query()) }}" class="export-btn">エクスポート</a>
+        </div>
         <div class="paginate">
             {{ $contacts->links('vendor.pagination.default') }}
         </div>
