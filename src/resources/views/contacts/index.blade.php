@@ -15,19 +15,17 @@
                 お名前 <span class="form__required">※</span>
             </label>
         </div>
-        <div class="form__content">
+        <div class="form__content form__content--flex">
             <div class="form__input-name">
                 <input type="text" name="last_name" id="last_name" placeholder="例: 山田" value="{{ old('last_name') }}" required>
-                <input type="text" name="first_name" id="first_name" placeholder="例: 太郎" value="{{ old('first_name') }}" required>
-            </div>
-            <div class="form__error">
                 @error('last_name')
-                <p>{{ $message }}</p>
+                <p class="form__error">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="form__error">
+            <div class="form__input-name">
+                <input type="text" name="first_name" id="first_name" placeholder="例: 太郎" value="{{ old('first_name') }}" required>
                 @error('first_name')
-                <p>{{ $message }}</p>
+                <p class="form__error">{{ $message }}</p>
                 @enderror
             </div>
         </div>
@@ -53,11 +51,9 @@
                     その他
                 </label>
             </div>
-            <div class="form__error">
-                @error('gender')
-                <p>{{ $message }}</p>
-                @enderror
-            </div>
+            @error('gender')
+            <p class="form__error">{{ $message }}</p>
+            @enderror
         </div>
     </div>
     <div class="form__row">
@@ -70,11 +66,9 @@
             <div class="form__input">
                 <input type="email" name="email" id="email" placeholder="例: test@example.com" value="{{ old('email') }}" required>
             </div>
-            <div class="form__error">
-                @error('email')
-                <p>{{ $message }}</p>
-                @enderror
-            </div>
+            @error('email')
+            <p class="form__error">{{ $message }}</p>
+            @enderror
         </div>
     </div>
     <div class="form__row">
@@ -91,15 +85,13 @@
                 <span>-</span>
                 <input name="tel3" type="text" maxlength="5" value="{{ old('tel3') }}"  placeholder="5678" required>
             </div>
-            <div class="form__error">
-                @if ($errors->has('tel1'))
-                <p>{{ $errors->first('tel1') }}</p>
-                @elseif ($errors->has('tel2'))
-                <p>{{ $errors->first('tel2') }}</p>
-                @elseif ($errors->has('tel3'))
-                <p>{{ $errors->first('tel3') }}</p>
-                @endif
-            </div>
+            @if ($errors->has('tel1'))
+            <p class="form__error">{{ $errors->first('tel1') }}</p>
+            @elseif ($errors->has('tel2'))
+            <p class="form__error">{{ $errors->first('tel2') }}</p>
+            @elseif ($errors->has('tel3'))
+            <p class="form__error">{{ $errors->first('tel3') }}</p>
+            @endif
         </div>
     </div>
     <div class="form__row">
@@ -112,11 +104,9 @@
             <div class="form__input">
                 <input type="text" name="address" id="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}" required>
             </div>
-            <div class="form__error">
-                @error('address')
-                <p>{{ $message }}</p>
-                @enderror
-            </div>
+            @error('address')
+            <p class="form__error">{{ $message }}</p>
+            @enderror
         </div>
     </div>
     <div class="form__row">
@@ -153,11 +143,9 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form__error">
-                @error('category_id')
-                <p>{{ $message }}</p>
-                @enderror
-            </div>
+            @error('category_id')
+            <p class="form__error">{{ $message }}</p>
+            @enderror
         </div>
     </div>
     <div class="form__row">
@@ -170,11 +158,9 @@
             <div class="form__input">
                 <textarea name="detail" id="message" placeholder="お問合せ内容をご記載ください" required>{{ old('detail') }}</textarea>
             </div>
-            <div class="form__error">
-                @error('detail')
-                <p>{{ $message }}</p>
-                @enderror
-            </div>
+            @error('detail')
+            <p class="form__error">{{ $message }}</p>
+            @enderror
         </div>
     </div>
     <div class="form__btn">

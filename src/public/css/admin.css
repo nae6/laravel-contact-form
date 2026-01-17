@@ -1,3 +1,13 @@
+/* logout button */
+.header__link--btn {
+    padding: 4px 20px;
+    border: 1px solid #d5d4d4;
+    background-color: #f6f4f4;
+    color: #afafaf;
+    font-family: "Andada Pro", sans-serif;
+    font-size: 16px;
+}
+
 .form__content {
     margin: 0 auto;
     padding: 30px 15px;
@@ -22,14 +32,41 @@
 .search__date {
     height: 40px;
     padding: 0 10px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    background: #fff;
+    border: 1px solid #e6dfd8;
+    background: #f6f6f6;
+    color: #8a7b6f;
     font-size: 14px;
+    border-radius: 2px;
+    outline: none;
 }
 
 .search__input {
     width: 30%;
+    background: #fdfcfc;
+}
+
+.search__input::placeholder {
+    color: #b7aaa0;
+}
+
+.search__select {
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 44px;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #c8beb6 50%),
+        linear-gradient(135deg, #c8beb6 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+    background-position:
+        calc(100% - 20px) 21px,
+        calc(100% - 14px) 21px,
+        0 0;
+    background-size: 6px 6px, 6px 6px, 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.search__date {
+    padding-right: 14px;
 }
 
 .search__btn {
@@ -37,6 +74,11 @@
     border: none;
     cursor: pointer;
     font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: 1px solid transparent;
 }
 
 .search__btn-search {
@@ -55,31 +97,30 @@
 /* functions */
 .functions {
     width: 90%;
-    margin: 0 auto;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
 }
 
 .export-btn {
     display: inline-block;
-    padding: 8px 16px;
-    background: #4CAF50;
-    color: #fff;
-    border-radius: 4px;
+    padding: 5px 16px;
+    color: #7a6a5e;
+    background-color: #e2e0de;
     text-decoration: none;
 }
 
 .pagination {
     display: flex;
     justify-content: right;
+    border: 1px solid #e6dfd9;
+    border-right: none;
+    border-radius: 2px;
+    padding: 0;
 }
 
 .pager__item {
     list-style: none;
-    margin: 0;
-    padding: 0;
-    display: inline-flex;
-    border: 1px solid #e6dfd9;
 }
 
 .pager__link {
@@ -90,15 +131,11 @@
     text-decoration: none;
     color: #7a6a5e;
     border-collapse: collapse;
-}
-
-.pager__item:last-child .pager__link {
-    border-right: none;
+    border-right: 1px solid #e6dfd9;
 }
 
 .pager__item--active .pager__link {
     background: #7a6a5e;
-    /* 現在ページだけ濃い背景 */
     color: #fff;
 }
 
@@ -106,7 +143,6 @@
     color: #c8bdb4;
     cursor: default;
     pointer-events: none;
-    background: #fff;
 }
 
 .pager__link:hover {
@@ -130,17 +166,26 @@
     border: 1px solid #e6dfd9;
 }
 
+.table__row--hover:hover {
+    background-color: #fad6b4;
+}
+
 .table__header {
     background-color: #7a6a5e;
     color: #fff;
-    padding: 15px;
+    padding: 15px 15px 15px 30px;
 }
+
 .table__items {
     padding: 15px;
 }
 
 .table__items p {
     margin: 0;
+}
+
+.table__items p:nth-of-type(5n-4) {
+    padding-left: 15px;
 }
 
 .modal-open-btn {
@@ -172,15 +217,10 @@
     display: flex;
 }
 
-.close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 24px;
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-    transform: translate(50%, -50%);
+.modal .close img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 .modal-wrapper {
@@ -195,6 +235,19 @@
     border-radius: 5px;
     font-size: 13px;
 }
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
 .modal-items {
     display: flex;
     flex-wrap: wrap;
@@ -212,7 +265,7 @@
 }
 
 .modal-btn {
-    margin-top: 70px;
+    margin-top: 50px;
     width: 100%;
 }
 
@@ -222,7 +275,7 @@
 
 .delete-btn__submit {
     text-decoration: none;
-    padding: 2px 20px;
+    padding: 2px 15px;
     border: none;
     border-radius: 2px;
     background-color: #ff0000;

@@ -33,7 +33,7 @@
 }
 
 .form__title {
-    width: 30%;
+    width: 40%;
 }
 
 .form__required {
@@ -44,20 +44,26 @@
 }
 
 .form__content {
-    width: 70%;
+    width: 60%;
+    margin-bottom: 20px;
 }
 
-.form__input-name, .form__input-tel {
+.form__content--flex {
     display: flex;
     justify-content: space-between;
-    width: 100%;
 }
 
 .form__input-name input {
-    width: 45%;
+    width: 100%;
     padding: 6px;
     background: #eaedf2;
     border: none;
+}
+
+.form__input-tel {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .form__input {
@@ -105,6 +111,7 @@
     height: 20px;
     color: #ff0000;
     text-align: left;
+    margin: 0;
 }
 
 /* confirm 専用 */
