@@ -1,6 +1,7 @@
-# Contact Form（Laravel）
+# Laravel Contact Form
 
 Laravelで作成したお問合せフォームアプリです。
+問い合わせ投稿、ユーザー登録・ログイン機能、管理画面での問い合わせ管理機能を備えています。
 
 ---
 
@@ -14,14 +15,14 @@ cd laravel-contact-form
 
 ### 2. Dockerビルド
 ```bash
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 ### 3. Laravel環境構築
 
 #### 1. PHPコンテナに入る
 ```bash
-docker-compose exec php bash
+docker compose exec php bash
 ```
 
 #### 2. Laravelパッケージのインストール
@@ -34,8 +35,20 @@ composer install
 cp .env.example .env
 php artisan key:generate
 ```
+.envを以下のように設定してください
 
-#### 4. DB作成・初期データセット
+```bash
+APP_URL=http://localhost:8081
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+```
+
+#### 4. データベース初期化
 ```bash
 php artisan migrate
 php artisan db:seed
@@ -72,10 +85,3 @@ php artisan db:seed
 - categories (1) ─── (N) contacts
 
 ![ER Diagram](er/er_diagram.png)
-
----
-
-## 工夫した点
-
-### 管理画面へのアクセス
-管理画面(http://localhost:8081/admin)へアクセスした際、ログインしていなければ認証機能によりログイン画面が表示されるように設定しました。
