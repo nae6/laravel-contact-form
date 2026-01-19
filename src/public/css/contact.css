@@ -105,6 +105,10 @@
     border: none;
 }
 
+.form__select option {
+    color: #887a6b;
+}
+
 .form__input textarea {
     padding: 5px;
     height: 200px;
