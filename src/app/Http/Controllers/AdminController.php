@@ -9,11 +9,13 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdminController extends Controller
 {
+    private const PRE_PAGE = 7;
+
     public function index()
     {
         $contacts = Contact::with('category')
             ->latest()
-            ->paginate(7);
+            ->paginate(self::PRE_PAGE);
 
         $categories = Category::select('id', 'content')->get();
 
@@ -30,13 +32,14 @@ class AdminController extends Controller
             ->categorySearch($request->category)
             ->dateSearch($request->created_at)
             ->latest()
-            ->paginate(7)
+            ->paginate(self::PRE_PAGE)
             ->appends($request->query());
+            // appendsは検索条件をページネーションのリンクに保持するために必須
 
         return view('admin.index', compact('contacts', 'categories'));
     }
 
-    // CSVエクスポート
+    /** CSVエクスポート */
     public function export(Request $request): StreamedResponse
     {
         $query = Contact::with('category')
@@ -52,10 +55,9 @@ class AdminController extends Controller
         {
             $out = fopen('php://output', 'w');
 
-            // Excel文字化け対策（UTF-8 BOM）
+            /** Excel文字化け対策（UTF-8 BOM） */
             fwrite($out, "\xEF\xBB\xBF");
 
-            // ヘッダー行
             fputcsv($out, [
                 'ID',
                 'カテゴリ',
@@ -70,7 +72,7 @@ class AdminController extends Controller
                 '作成日',
             ]);
 
-            // 大量件数対策
+            /** 大量件数対策 */
             $query->chunk(500, function ($rows) use ($out) {
                 foreach ($rows as $c) {
                     fputcsv($out, [
@@ -96,7 +98,7 @@ class AdminController extends Controller
         ]);
     }
 
-    // 削除する
+    /** DELETE */
     public function destroy(Contact $contact)
     {
         $contact->delete();
