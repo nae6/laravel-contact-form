@@ -105,3 +105,11 @@ php artisan db:seed
 - categories (1) ─── (N) contacts
 
 ![ER Diagram](er/er_diagram.png)
+
+---
+
+## 既知の制限事項
+
+- 本リポジトリは学習用のポートフォリオ作品であり、実運用（本番デプロイ）は想定していません。
+- Laravel 8系を使用しています。依存パッケージの脆弱性は `composer audit` で洗い出し、既存のバージョン制約内で修正可能なものは対応済みです（[fix/update-vulnerable-dependencies](https://github.com/nae6/laravel-contact-form/tree/fix/update-vulnerable-dependencies)）。
+- フレームワーク本体（Laravel 8→10以降）のメジャーアップグレードが必要な項目が一部残っており、学習用リポジトリの範囲を超えるため対応を見送っています（EOLに伴う技術的負債として認識済み）。
