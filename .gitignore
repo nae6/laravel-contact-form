@@ -1,0 +1,3 @@
+# MySQL runtime data (Docker volume). This is generated at container
+# start/runtime and should never be committed as source content.
+/docker/mysql/data/
