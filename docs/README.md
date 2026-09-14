@@ -59,7 +59,27 @@ php artisan db:seed
 ## 開発環境
 - お問合せ画面: http://localhost:8081
 - ユーザー登録: http://localhost:8081/register
+- ログイン: http://localhost:8081/login
+- 管理画面: http://localhost:8081/admin
 - phpMyAdmin: http://localhost:8080
+
+---
+
+## ログインユーザー・管理者について
+
+このアプリに「管理者」専用の権限やロールはありません。`users`テーブルに登録された（＝会員登録した）ユーザーであれば誰でもログイン後に管理画面（`/admin`）へアクセスできます。
+
+- あらかじめ用意されたシードユーザーはありません（`php artisan db:seed`では`categories`とお問い合わせデータのみ投入されます）。
+- 管理画面を利用するには、以下の手順でユーザーを作成してください。
+
+### 1. ユーザー登録
+`http://localhost:8081/register` にアクセスし、お名前・メールアドレス・パスワードを入力して登録します。
+
+### 2. ログイン
+`http://localhost:8081/login` から、登録したメールアドレス・パスワードでログインします。
+
+### 3. 管理画面へアクセス
+ログイン後、`http://localhost:8081/admin` でお問い合わせ一覧の閲覧・検索・CSVエクスポート・削除が行えます。
 
 ---
 
