@@ -5,6 +5,25 @@ Laravelで作成したお問合せフォームアプリです。
 
 ---
 
+## 機能紹介
+
+### お問い合わせフォーム
+- 姓名・性別・メールアドレス・電話番号・住所・カテゴリ・お問い合わせ内容の入力とバリデーション
+- 入力内容の確認画面（確認 → 送信 → 完了、内容を戻って修正も可能）
+
+### ユーザー登録・ログイン（Laravel Fortify）
+- 会員登録・ログイン・ログアウト
+- ログイン後は管理画面（`/admin`）へ自動リダイレクト
+- セッション切れ時の専用エラーページ（419）
+
+### 管理画面
+- お問い合わせ一覧の表示（ページネーション）
+- キーワード・性別・カテゴリ・日付での絞り込み検索
+- CSVエクスポート（Excelでの文字化け対策込み、大量件数にも対応）
+- お問い合わせの削除
+
+---
+
 ## 環境構築
 
 ### 1. リポジトリをクローン
@@ -56,6 +75,18 @@ php artisan db:seed
 
 ---
 
+## テスト
+
+お問い合わせフォームと管理画面の機能をPHPUnitのFeatureテストでカバーしています（`src/tests/Feature`）。
+
+```bash
+docker compose exec php php artisan test
+```
+
+テスト用DB（`demo_test`）へのマイグレーションは`RefreshDatabase`トレイトによりテスト実行時に自動で行われるため、事前準備は不要です。
+
+---
+
 ## 開発環境
 - お問合せ画面: http://localhost:8081
 - ユーザー登録: http://localhost:8081/register
@@ -104,7 +135,7 @@ php artisan db:seed
 ### リレーション
 - categories (1) ─── (N) contacts
 
-![ER Diagram](er/er_diagram.png)
+![ER Diagram](docs/er/er_diagram.png)
 
 ---
 
