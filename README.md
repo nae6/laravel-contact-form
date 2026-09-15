@@ -79,11 +79,17 @@ php artisan db:seed
 
 お問い合わせフォームと管理画面の機能をPHPUnitのFeatureテストでカバーしています（`src/tests/Feature`）。
 
+テストは`mysql`コンテナ内に`demo_test`という別データベースを使用します（初回のみ作成が必要です）。
+
+```bash
+docker compose exec mysql mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS demo_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+```
+
+テーブルへのマイグレーションは`RefreshDatabase`トレイトによりテスト実行時に自動で行われます。
+
 ```bash
 docker compose exec php php artisan test
 ```
-
-テスト用DB（`demo_test`）へのマイグレーションは`RefreshDatabase`トレイトによりテスト実行時に自動で行われるため、事前準備は不要です。
 
 ---
 
@@ -115,7 +121,7 @@ docker compose exec php php artisan test
 ---
 
 ## 使用技術
-- PHP: 8.4.16
+- PHP: 8.4系（Dockerイメージ`php:8.4-fpm`を使用。パッチバージョンはビルド時点の最新に追従します）
 - Laravel: 8.83.29
 - MySQL: 8.4.7
 - nginx: 1.28.1
@@ -144,3 +150,9 @@ docker compose exec php php artisan test
 - 本リポジトリは学習用のポートフォリオ作品であり、実運用（本番デプロイ）は想定していません。
 - Laravel 8系を使用しています。依存パッケージの脆弱性は `composer audit` で洗い出し、既存のバージョン制約内で修正可能なものは対応済みです（[#13](https://github.com/nae6/laravel-contact-form/pull/13)）。
 - フレームワーク本体（Laravel 8→10以降）のメジャーアップグレードが必要な項目が一部残っており、学習用リポジトリの範囲を超えるため対応を見送っています（EOLに伴う技術的負債として認識済み）。
+
+---
+
+## ライセンス
+
+[MIT License](LICENSE)
