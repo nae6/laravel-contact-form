@@ -91,6 +91,22 @@ docker compose exec mysql mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS 
 docker compose exec php php artisan test
 ```
 
+### テスト用の環境設定ファイル（任意）
+
+`src/.env.testing`が無い場合、テストは`.env`の設定をそのまま使います。テスト専用の設定を分けたい場合のみ、`src/.env.testing`を作成して次の項目を設定してください。
+
+- `APP_ENV`
+- `APP_KEY`
+- `DB_HOST`
+
+`APP_KEY`は、`.env.testing`に値が空の`APP_KEY=`の行を用意してから、次のコマンドで生成します（行が無いと、成功と表示されても鍵は書き込まれません）。値をREADMEやコミットに書かないでください。
+
+```bash
+docker compose exec php php artisan key:generate --env=testing
+```
+
+`.env.testing`は`.gitignore`の対象で、秘密鍵を含むためGitにはコミットしません。
+
 ---
 
 ## 開発環境
